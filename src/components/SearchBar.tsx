@@ -47,7 +47,7 @@ export function SearchBar({ values, setValues, minDistance, setMinDistance, isGo
 
     return (
         <Grid container alignItems="center" justifyContent={"center"} spacing={4}>
-            <Grid item xs={6}>
+            <Grid item  xs={8}  md={4} sm={6}>
                 <Autocomplete
                     fullWidth
                     disableClearable
@@ -63,7 +63,7 @@ export function SearchBar({ values, setValues, minDistance, setMinDistance, isGo
 
                 />
             </Grid>
-            <Grid item xs={2}>
+            <Grid item xs={8}  md={2} sm={3}>
                 <FormControl
                     fullWidth
                 >

@@ -12,6 +12,7 @@ import SmallCard from "./SmallCard";
 import {Backend, SERVER_URL} from "./ResponsiveCardGrid";
 import {Divider, Grid} from "@mui/material";
 import Carousel from "./Carousel";
+import {Image} from "mui-image";
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & {
@@ -59,14 +60,17 @@ export default function FullCard(props: Backend) {
                         <Typography sx={{ml: 2, flex: 1}} variant="h6" component="div">
                             Details
                         </Typography>
+                        <Button autoFocus color="inherit" onClick={handleClose}>
+                            Contact
+                        </Button>
                     </Toolbar>
                 </AppBar>
-                <Grid container direction={"row"} alignItems={"center"} justifyContent={"center"} spacing={5}
+                <Grid container direction={"row"} alignItems={"stretch"} justifyContent={"center"} spacing={5}
                       padding={4}>
-                    <Grid item xs={2}>
-                        <img src={SERVER_URL + props.image} alt="green iguana" height={200} width={200}/>
+                    <Grid item xs={12} sm={4} md={3}>
+                        <Image src={SERVER_URL + props.image} width={200} height={200}/>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={12} sm={6} md={6}>
                         <Typography variant="h5" component="div">
                             {props.lastname} {props.firstname}
                         </Typography>

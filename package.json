@@ -20,11 +20,14 @@
     "@weknow/react-bubble-chart-d3": "^1.0.12",
     "d3": "^7.8.2",
     "d3-force": "^3.0.0",
+    "mui-image": "^1.0.7",
     "react": "^18.2.0",
     "react-bubble-chart": "^0.4.0",
     "react-chat-widget": "^3.1.4",
     "react-chat-widget-2": "^1.0.19",
     "react-dom": "^18.2.0",
+    "react-fit-image": "^1.0.6",
+    "react-router-dom": "^6.7.0",
     "react-scripts": "5.0.1",
     "react-swipeable-views": "^0.14.0",
     "react-swipeable-views-utils": "^0.14.0",
@@ -56,6 +59,7 @@
     ]
   },
   "devDependencies": {
+    "@types/mui-image": "^1.0.1",
     "@types/react-swipeable-views": "^0.13.1",
     "@types/react-swipeable-views-utils": "^0.13.4"
   }

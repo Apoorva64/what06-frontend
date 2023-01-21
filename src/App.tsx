@@ -6,6 +6,23 @@ import {Grid} from "@mui/material";
 import {ResponsiveCardGrid} from "./components/smallCards/ResponsiveCardGrid";
 import {Widget} from "react-chat-widget-2";
 import 'react-chat-widget/lib/styles.css';
+import {Route, Routes} from "react-router-dom";
+
+class QueryPage extends React.Component<{ values: string[], values1: (value: (((prevState: string[]) => string[]) | string[])) => void, minDistance: string, minDistance1: (value: (((prevState: string) => string) | string)) => void, godMother: boolean, isGodMother: (value: (((prevState: boolean) => boolean) | boolean)) => void }> {
+    render() {
+        return <Grid container xs={12} alignItems={"flex-start"} justifyContent={"center"} spacing={2}>
+            <Grid item xs={12}><SearchBar values={this.props.values} setValues={this.props.values1}
+                                          minDistance={this.props.minDistance}
+                                          setMinDistance={this.props.minDistance1} isGodMother={this.props.godMother}
+                                          setIsGodMother={this.props.isGodMother}/></Grid>
+            <Grid item xs={12}><ResponsiveCardGrid values={this.props.values} setValues={this.props.values1}
+                                                   minDistance={this.props.minDistance}
+                                                   setMinDistance={this.props.minDistance1}
+                                                   isGodMother={this.props.godMother}
+                                                   setIsGodMother={this.props.isGodMother}/></Grid>
+        </Grid>;
+    }
+}
 
 function App() {
     const [values, setValues] = useState([] as string[]);
@@ -17,32 +34,38 @@ function App() {
     const [isGodMother, setIsGodMother] = useState(false);
 
     return (
-        <><Grid container direction={"column"} alignItems={"stretch"} justifyContent={"stretch"}
-                sx={{minHeight: "100vh"}}>
+        <>
+            <Grid container direction={"column"} alignItems={"stretch"} justifyContent={"stretch"}
+                  sx={{minHeight: "100vh"}}>
 
-            <Grid item sx={{flexGrow: 1}}>
-                <Navbar isGodMother={isGodMother} setIsGodMother={setIsGodMother}/>
-            </Grid>
-            <Grid item sx={{
-                flexGrow: 1,
-                height: "85vh",
-            }}>
-                <Grid container xs={12} alignItems={"flex-start"} justifyContent={"center"} spacing={2}>
-                    <Grid item xs={12}><SearchBar values={values} setValues={setValues} minDistance={minDistance}
-                                                  setMinDistance={setMinDistance} isGodMother={isGodMother}
-                                                  setIsGodMother={setIsGodMother}/></Grid>
-                    <Grid item xs={12}><ResponsiveCardGrid values={values} setValues={setValues}
-                                                           minDistance={minDistance} setMinDistance={setMinDistance}
-                                                           isGodMother={isGodMother}
-                                                           setIsGodMother={setIsGodMother}/></Grid>
+                <Grid item sx={{flexGrow: 1}}>
+                    <Navbar isGodMother={isGodMother} setIsGodMother={setIsGodMother}/>
                 </Grid>
+                <Grid item sx={{
+                    flexGrow: 1,
+                    height: "85vh",
+                }}>
+                    <Routes>
+                        {/*<Route path="/login" element={<LoginPage/>}/>*/}
+                        {/*<Route path="/signup" element={<SignUp/>}/>*/}
+                        {/*<Route path="/logout" element={<Logout/>}/>*/}
+                        <Route path="/filleule" element={<QueryPage values={values} values1={setValues} minDistance={minDistance}
+                                                                  minDistance1={setMinDistance} godMother={false} isGodMother={setIsGodMother}/>}/>
+                        <Route path="/maraine" element={<QueryPage values={values} values1={setValues} minDistance={minDistance}
+                                                                    minDistance1={setMinDistance} godMother={true} isGodMother={setIsGodMother}/>}/>
+
+                        {/*<Route path="/home" element={<Home/>}/>*/}
+                        {/*<Route path="/" element={<Home/>}/>*/}
+                        <Route path="*" element={<div>404</div>}/>
+                    </Routes>
+
+
+                </Grid>
+                <Widget
+                    handleNewUserMessage={handleNewUserMessage}
+                />
 
             </Grid>
-            <Widget
-                handleNewUserMessage={handleNewUserMessage}
-            />
-
-        </Grid>
         </>
 
     );

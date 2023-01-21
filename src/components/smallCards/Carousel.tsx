@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
+import {useTheme} from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MobileStepper from '@mui/material/MobileStepper';
 import Paper from '@mui/material/Paper';
@@ -8,10 +8,12 @@ import Button from '@mui/material/Button';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
-import { autoPlay } from 'react-swipeable-views-utils';
+import {autoPlay} from 'react-swipeable-views-utils';
 import {graphs, SERVER_URL} from "./ResponsiveCardGrid";
+import {Image} from "mui-image";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+
 interface CarouselProps {
     images: graphs[]
 }
@@ -35,7 +37,7 @@ function Carousel({images}: CarouselProps) {
     };
 
     return (
-        <Box sx={{ maxWidth: 400, flexGrow: 1 }}>
+        <Box sx={{maxWidth: 400, flexGrow: 1}}>
             <Paper
                 square
                 elevation={0}
@@ -47,7 +49,7 @@ function Carousel({images}: CarouselProps) {
                     bgcolor: 'background.default',
                 }}
             >
-                <Typography>{images[activeStep].name}</Typography>
+                <Typography variant={"h4"} >{images[activeStep].name}</Typography>
             </Paper>
             <AutoPlaySwipeableViews
                 axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
@@ -58,18 +60,14 @@ function Carousel({images}: CarouselProps) {
                 {images.map((step, index) => (
                     <div key={step.name}>
                         {Math.abs(activeStep - index) <= 2 ? (
-                            <Box
-                                component="img"
-                                sx={{
-                                    height: 255,
-                                    display: 'block',
-                                    maxWidth: 200,
-                                    // overflow: 'hidden',
-                                    width: '100%',
-                                }}
-                                src={SERVER_URL+ step.url}
-                                alt={step.name}
+                            <Image
+                                src={SERVER_URL + step.url}
+                                fit={"contain"}
+                                width={"30wv"}
+                                height={"40vh"}
                             />
+
+
                         ) : null}
                     </div>
                 ))}
@@ -86,18 +84,18 @@ function Carousel({images}: CarouselProps) {
                     >
                         Next
                         {theme.direction === 'rtl' ? (
-                            <KeyboardArrowLeft />
+                            <KeyboardArrowLeft/>
                         ) : (
-                            <KeyboardArrowRight />
+                            <KeyboardArrowRight/>
                         )}
                     </Button>
                 }
                 backButton={
                     <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
                         {theme.direction === 'rtl' ? (
-                            <KeyboardArrowRight />
+                            <KeyboardArrowRight/>
                         ) : (
-                            <KeyboardArrowLeft />
+                            <KeyboardArrowLeft/>
                         )}
                         Back
                     </Button>
