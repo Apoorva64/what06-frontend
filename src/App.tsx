@@ -39,7 +39,7 @@ function App() {
                   sx={{minHeight: "100vh"}}>
 
                 <Grid item sx={{flexGrow: 1}}>
-                    <Navbar isGodMother={isGodMother} setIsGodMother={setIsGodMother}/>
+                    <Navbar/>
                 </Grid>
                 <Grid item sx={{
                     flexGrow: 1,
@@ -49,9 +49,9 @@ function App() {
                         {/*<Route path="/login" element={<LoginPage/>}/>*/}
                         {/*<Route path="/signup" element={<SignUp/>}/>*/}
                         {/*<Route path="/logout" element={<Logout/>}/>*/}
-                        <Route path="/filleule" element={<QueryPage values={values} values1={setValues} minDistance={minDistance}
+                        <Route path="/filleules" element={<QueryPage values={values} values1={setValues} minDistance={minDistance}
                                                                   minDistance1={setMinDistance} godMother={false} isGodMother={setIsGodMother}/>}/>
-                        <Route path="/maraine" element={<QueryPage values={values} values1={setValues} minDistance={minDistance}
+                        <Route path="/marraines" element={<QueryPage values={values} values1={setValues} minDistance={minDistance}
                                                                     minDistance1={setMinDistance} godMother={true} isGodMother={setIsGodMother}/>}/>
 
                         {/*<Route path="/home" element={<Home/>}/>*/}

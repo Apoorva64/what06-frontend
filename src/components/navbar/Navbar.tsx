@@ -8,22 +8,18 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import {Link, useLocation} from 'react-router-dom';
+import {ButtonBase} from "@mui/material";
 
 const pages: string[] = [];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-interface NavBarProps {
-    isGodMother: boolean,
-    setIsGodMother: (value: (((prevState: boolean) => boolean) | boolean)) => void
-}
-
-function NavBar({isGodMother, setIsGodMother}: NavBarProps) {
+function NavBar() {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
-
+    const location = useLocation();
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
     };
@@ -38,13 +34,17 @@ function NavBar({isGodMother, setIsGodMother}: NavBarProps) {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+    console.log(location.pathname);
 
     return (
         <AppBar position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <img src={"https://cdn.discordapp.com/attachments/1066132764115607725/1066207178098229308/apoo.png"}
-                         style={{width: 120}}/>
+                    <ButtonBase component={Link} to="/home">
+                        <img
+                            src={"https://cdn.discordapp.com/attachments/1066132764115607725/1066207178098229308/apoo.png"}
+                            style={{width: 120}}/>
+                    </ButtonBase>
 
                     <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
                         <IconButton
@@ -75,34 +75,36 @@ function NavBar({isGodMother, setIsGodMother}: NavBarProps) {
                                 display: {xs: 'block', md: 'none'},
                             }}
                         >
-                            {isGodMother && <MenuItem>
-                                <Button variant="contained" color="primary" onClick={() => setIsGodMother(false)}>
-                                    Marraine
-                                </Button>
-                            </MenuItem>
+                            <MenuItem>{location.pathname === '/filleules' &&
+                                <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
+                                    Espace Filleules
+                                </Typography>
                             }
-                            {!isGodMother && <MenuItem>
-                                <Button variant="contained" color="primary" onClick={() => setIsGodMother(true)}>
-                                    Filleule
-                                </Button>
-                            </MenuItem>
-                            }
+
+                                {location.pathname === '/marraines' &&
+                                    <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
+                                        Marraines
+                                    </Typography>
+                                }</MenuItem>
 
                         </Menu>
                     </Box>
                     <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
-                        {isGodMother && <MenuItem>
-                            <Button variant="contained" color="primary" onClick={() => setIsGodMother(false)}>
-                                Marraine
-                            </Button>
-                        </MenuItem>
-                        }
-                        {!isGodMother && <MenuItem>
-                            <Button variant="contained" color="primary" onClick={() => setIsGodMother(true)}>
-                                Filleule
-                            </Button>
-                        </MenuItem>
-                        }
+                        <>
+                            {location.pathname === '/filleules' &&
+                                <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
+                                    Espace Filleules
+                                </Typography>
+                            }
+
+                            {location.pathname === '/marraines' &&
+                                <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
+                                    Espace Marraines
+                                </Typography>
+                            }
+                        </>
+
+
                     </Box>
 
                     <Box sx={{flexGrow: 0}}>
@@ -129,7 +131,6 @@ function NavBar({isGodMother, setIsGodMother}: NavBarProps) {
                         >
                             <MenuItem onClick={() => {
                                 handleCloseUserMenu();
-                                setIsGodMother(!isGodMother);
                             }
                             }>
                                 <Typography textAlign="center">Switch</Typography>
